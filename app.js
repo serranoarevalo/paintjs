@@ -16,9 +16,9 @@ context.strokeStyle = "#000000";
 context.lineWidth = 2.5;
 
 const onMouseMove = event => {
-  x = event.x;
-  y = event.y;
-  console.log(filling);
+  console.log(event);
+  x = event.offsetX;
+  y = event.offsetY;
   if (!filling) {
     if (!painting) {
       context.beginPath();
