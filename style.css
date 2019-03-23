@@ -12,7 +12,8 @@ body {
 }
 
 canvas {
-  border: 3px solid #6495ed;
+  margin: 30px 0px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
   background-color: white;
 }

@@ -3,7 +3,8 @@ const canvas = document.getElementById("js-paint"),
   strokeInput = document.getElementById("js-line"),
   colors = document.getElementsByClassName("color"),
   fillBtn = document.getElementById("js-fill"),
-  drawBt = document.getElementById("js-draw");
+  drawBt = document.getElementById("js-draw"),
+  saveBtn = document.getElementById("js-save");
 
 let painting = false;
 let filling = false;
@@ -12,8 +13,10 @@ let x, y;
 canvas.width = 700;
 canvas.height = 700;
 
-context.strokeStyle = "#000000";
 context.lineWidth = 2.5;
+context.fillStyle = "#ffffff";
+context.fillRect(0, 0, canvas.width, canvas.height);
+context.strokeStyle = "#000000";
 
 const onMouseMove = event => {
   console.log(event);
@@ -43,13 +46,8 @@ const onColorClick = e => {
   context.strokeStyle = style.backgroundColor;
 };
 
-const switchMode = () => {
-  if (filling === true) {
-    filling = false;
-  } else {
-    filling = true;
-  }
-};
+const startFilling = () => (filling = true);
+const stopFilling = () => (filling = false);
 
 const onCanvasClick = () => {
   if (filling) {
@@ -58,6 +56,13 @@ const onCanvasClick = () => {
     context.fillStyle = context.strokeStyle;
     context.fillRect(0, 0, canvas.width, canvas.height);
   }
+};
+
+const saveImage = () => {
+  const a = document.createElement("a");
+  a.href = canvas.toDataURL("image/jpeg");
+  a.download = "paintJSExport";
+  a.click();
 };
 
 Array.from(colors).forEach(color =>
@@ -69,5 +74,6 @@ canvas.addEventListener("mouseup", stopPainting, false);
 canvas.addEventListener("mouseleave", stopPainting, false);
 canvas.addEventListener("click", onCanvasClick, false);
 strokeInput.addEventListener("input", onRangeChange, false);
-fillBtn.addEventListener("click", switchMode, false);
-drawBt.addEventListener("click", switchMode, false);
+fillBtn.addEventListener("click", startFilling, false);
+drawBt.addEventListener("click", stopFilling, false);
+saveBtn.addEventListener("click", saveImage, false);
