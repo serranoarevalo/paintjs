@@ -4,10 +4,17 @@ body {
   padding: 0;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 canvas {
   width: 700px;
   height: 700px;
-  border: 1px solid #6495ed;
+  border: 3px solid #6495ed;
+  border-radius: 30px;
 }
 
 .color {
@@ -20,4 +27,9 @@ canvas {
 
 .colors {
   display: flex;
+}
+
+.controls,
+.colors {
+  margin-top: 50px;
 }
