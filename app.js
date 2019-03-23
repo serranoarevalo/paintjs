@@ -1,13 +1,15 @@
 const canvas = document.getElementById("js-paint"),
-  context = canvas.getContext("2d");
+  context = canvas.getContext("2d"),
+  strokeInput = document.getElementById("js-line");
 
 let painting = false;
 let x, y;
 
-canvas.width = window.innerWidth - 80;
-canvas.height = window.innerHeight - 80;
+canvas.width = 700;
+canvas.height = 700;
 
 context.strokeStyle = "#000000";
+context.lineWidth = 2.5;
 
 const onMouseMove = event => {
   x = event.x;
@@ -21,14 +23,16 @@ const onMouseMove = event => {
   }
 };
 
-const onMouseDown = () => {
-  painting = true;
-};
+const startPainting = () => (painting = true);
+const stopPainting = () => (painting = false);
 
-const onMouseUp = () => {
-  painting = false;
+const onRangeChange = e => {
+  const value = e.target.value;
+  context.lineWidth = value;
 };
 
 canvas.addEventListener("mousemove", onMouseMove, false);
-canvas.addEventListener("mousedown", onMouseDown, false);
-canvas.addEventListener("mouseup", onMouseUp, false);
+canvas.addEventListener("mousedown", startPainting, false);
+canvas.addEventListener("mouseup", stopPainting, false);
+canvas.addEventListener("mouseleave", stopPainting, false);
+strokeInput.addEventListener("input", onRangeChange, false);

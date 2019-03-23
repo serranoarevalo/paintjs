@@ -3,3 +3,9 @@ body {
   margin: 0;
   padding: 0;
 }
+
+canvas {
+  width: 700px;
+  height: 700px;
+  border: 1px solid cornflowerblue;
+}
