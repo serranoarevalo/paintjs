@@ -7,5 +7,15 @@ body {
 canvas {
   width: 700px;
   height: 700px;
-  border: 1px solid cornflowerblue;
+  border: 1px solid #6495ed;
+}
+
+.color {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.colors {
+  display: flex;
 }

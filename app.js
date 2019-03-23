@@ -1,6 +1,7 @@
 const canvas = document.getElementById("js-paint"),
   context = canvas.getContext("2d"),
-  strokeInput = document.getElementById("js-line");
+  strokeInput = document.getElementById("js-line"),
+  colors = document.getElementsByClassName("color");
 
 let painting = false;
 let x, y;
@@ -31,6 +32,14 @@ const onRangeChange = e => {
   context.lineWidth = value;
 };
 
+const onColorClick = e => {
+  const style = e.target.style;
+  context.strokeStyle = style.backgroundColor;
+};
+
+Array.from(colors).forEach(color =>
+  color.addEventListener("click", onColorClick, false)
+);
 canvas.addEventListener("mousemove", onMouseMove, false);
 canvas.addEventListener("mousedown", startPainting, false);
 canvas.addEventListener("mouseup", stopPainting, false);
